@@ -395,7 +395,7 @@ const { name, age } = { name: 'John', age: 30 };
 
 ### Arrays (Complete Reference)
 
-```javascript
+````javascript
 // Array creation
 const arr1 = [1, 2, 3];
 const arr2 = new Array(1, 2, 3);
@@ -459,7 +459,231 @@ const realArray = Array.from(arrayLike); // ['a', 'b']
 // Array destructuring
 const [first, second, ...rest] = [1, 2, 3, 4, 5];
 // first = 1, second = 2, rest = [3, 4, 5]
-```
+
+// Array creation
+const arr1 = [1, 2, 3];
+const arr2 = new Array(1, 2, 3);
+const arr3 = Array.of(1, 2, 3);
+const arr4 = Array.from("hello"); // ['h','e','l','l','o']
+const arr5 = Array(5).fill(0); // [0, 0, 0, 0, 0]
+
+// Multi-dimensional arrays
+const matrix = [[1, 2], [3, 4], [5, 6]];
+
+// Array properties
+console.log(arr1.length);  // 3
+
+// Mutating methods (modify original array)
+arr1.push(4);              // Add to end → [1,2,3,4]
+arr1.pop();                // Remove from end → [1,2,3]
+arr1.unshift(0);           // Add to beginning → [0,1,2,3]
+arr1.shift();              // Remove from beginning → [1,2,3]
+arr1.reverse();            // Reverse array → [3,2,1]
+arr1.sort();               // Sort array → [1,2,3]
+arr1.sort((a, b) => b - a); // Sort descending → [3,2,1]
+arr1.splice(1, 1, 'a', 'b'); // Remove/add at index → [3,'a','b',1]
+arr1.fill(0);              // Fill with value → [0,0,0,0]
+arr1.copyWithin(0, 1, 3);  // Copy elements within array
+
+// Non-mutating methods (return new array/value)
+const arr = [1, 2, 3, 4, 5];
+const sliced = arr.slice(1, 3);     // [2, 3]
+const joined = arr.join('-');       // "1-2-3-4-5"
+const concatenated = arr.concat([6, 7]); // [1,2,3,4,5,6,7]
+
+// Iteration methods
+arr.forEach((item, index, array) => console.log(item, index));
+const doubled = arr.map((x, index) => x * 2);
+const evens = arr.filter((x, index) => x % 2 === 0);
+const sum = arr.reduce((acc, curr, index) => acc + curr, 0);
+const product = arr.reduceRight((acc, curr) => acc * curr, 1);
+
+// Search methods
+console.log(arr.indexOf(3));       // 2 (first occurrence)
+console.log(arr.lastIndexOf(3));   // 2 (last occurrence)
+console.log(arr.includes(4));      // true (checks if element exists)
+console.log(arr.find(x => x > 3)); // 4 (first element that matches)
+console.log(arr.findIndex(x => x > 3)); // 3 (index of first match)
+console.log(arr.findLast(x => x > 3));  // 5 (last element that matches)
+console.log(arr.findLastIndex(x => x > 3)); // 4 (index of last match)
+
+// Testing methods
+console.log(arr.every(x => x > 0));  // true (all elements pass test)
+console.log(arr.some(x => x > 4));   // true (at least one passes test)
+
+// Advanced array methods
+const nested = [[1, 2], [3, 4], [5]];
+const flattened = nested.flat();    // [1, 2, 3, 4, 5]
+const deepNested = [1, [2, [3, [4]]]];
+const deepFlattened = deepNested.flat(3); // [1, 2, 3, 4] (depth = 3)
+const flattenAll = deepNested.flat(Infinity); // [1, 2, 3, 4] (flatten all)
+
+const mapped = arr.flatMap(x => [x, x * 2]); // [1,2,2,4,3,6,4,8,5,10]
+
+// Static methods
+console.log(Array.isArray([]));     // true
+console.log(Array.of(1, 2, 3));     // [1, 2, 3]
+
+// Array-like to Array conversion
+const arrayLike = { 0: 'a', 1: 'b', length: 2 };
+const realArray = Array.from(arrayLike); // ['a', 'b']
+const mappedArray = Array.from(arrayLike, x => x.toUpperCase()); // ['A', 'B']
+const rangeArray = Array.from({length: 5}, (_, i) => i + 1); // [1, 2, 3, 4, 5]
+
+// String to array
+const charArray = Array.from("hello"); // ['h','e','l','l','o']
+const spreadArray = [...'hello']; // ['h','e','l','l','o']
+
+// Array destructuring
+const [first, second, ...rest] = [1, 2, 3, 4, 5];
+// first = 1, second = 2, rest = [3, 4, 5]
+
+const [a, , c] = [1, 2, 3]; // Skip middle element: a = 1, c = 3
+const [x, y = 10] = [1]; // Default values: x = 1, y = 10
+
+// Nested destructuring
+const [[firstInner], [, secondInner]] = [[1, 2], [3, 4]];
+// firstInner = 1, secondInner = 4
+
+// Array methods chaining
+const result = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    .filter(x => x % 2 === 0)      // [2, 4, 6, 8, 10]
+    .map(x => x * x)               // [4, 16, 36, 64, 100]
+    .slice(1, 4)                   // [16, 36, 64]
+    .reduce((acc, curr) => acc + curr, 0); // 116
+
+// Array comparison
+const arr1 = [1, 2, 3];
+const arr2 = [1, 2, 3];
+console.log(arr1 === arr2); // false (different references)
+console.log(JSON.stringify(arr1) === JSON.stringify(arr2)); // true (simple comparison)
+
+// Shallow comparison function
+function arraysEqual(a, b) {
+    return a.length === b.length && a.every((val, i) => val === b[i]);
+}
+
+// Array with holes (sparse arrays)
+const sparse = [1, , , 4]; // [1, empty × 2, 4]
+console.log(sparse.length); // 4
+console.log(sparse[1]); // undefined
+console.log(1 in sparse); // false
+
+// Working with sparse arrays
+sparse.forEach(x => console.log(x)); // Only prints 1, 4
+const dense = [...sparse]; // [1, undefined, undefined, 4]
+
+// Array.prototype methods with callback signatures
+// map(callback(element, index, array), thisArg)
+// filter(callback(element, index, array), thisArg)
+// find(callback(element, index, array), thisArg)
+// forEach(callback(element, index, array), thisArg)
+// reduce(callback(accumulator, element, index, array), initialValue)
+
+// Using thisArg
+const multiplier = {
+    factor: 2,
+    multiply(arr) {
+        return arr.map(function(x) {
+            return x * this.factor;
+        }, this); // 'this' refers to multiplier object
+    }
+};
+
+// Modern array iteration with for...of
+for (const value of arr) {
+    console.log(value); // 1, 2, 3, 4, 5
+}
+
+for (const [index, value] of arr.entries()) {
+    console.log(index, value); // 0 1, 1 2, 2 3, etc.
+}
+
+// Array keys and values
+for (const key of arr.keys()) {
+    console.log(key); // 0, 1, 2, 3, 4
+}
+
+for (const value of arr.values()) {
+    console.log(value); // 1, 2, 3, 4, 5
+}
+
+// Converting NodeList/HTMLCollection to Array
+// const nodeList = document.querySelectorAll('div');
+// const arrayFromNodes = Array.from(nodeList);
+// const arrayFromNodes2 = [...nodeList];
+
+// Array performance considerations
+// push/pop: O(1)
+// shift/unshift: O(n)
+// splice: O(n)
+// slice: O(n)
+// indexOf/includes: O(n)
+// sort: O(n log n)
+
+// Memory-efficient array operations
+const hugeArray = new Array(1000000).fill(1);
+// Use splice for removing multiple elements efficiently
+// Use slice for creating subarrays without copying all elements
+
+// Array-like objects
+function createArrayLike() {
+    return {
+        0: 'first',
+        1: 'second',
+        2: 'third',
+        length: 3
+    };
+}
+
+const arrayLikeObj = createArrayLike();
+// Convert to real array to use array methods
+const realArr = Array.prototype.slice.call(arrayLikeObj);
+
+// Typed Arrays (for binary data)
+const int8Array = new Int8Array([1, 2, 3, 4]);
+const float32Array = new Float32Array([1.1, 2.2, 3.3]);
+const buffer = new ArrayBuffer(16);
+const view = new DataView(buffer);
+
+// Array utilities for common patterns
+function range(start, end, step = 1) {
+    return Array.from({length: Math.ceil((end - start) / step)}, (_, i) => start + i * step);
+}
+console.log(range(1, 10, 2)); // [1, 3, 5, 7, 9]
+
+function chunk(array, size) {
+    return array.reduce((chunks, item, index) => {
+        const chunkIndex = Math.floor(index / size);
+        if (!chunks[chunkIndex]) chunks[chunkIndex] = [];
+        chunks[chunkIndex].push(item);
+        return chunks;
+    }, []);
+}
+console.log(chunk([1, 2, 3, 4, 5, 6], 2)); // [[1, 2], [3, 4], [5, 6]]
+
+function unique(array) {
+    return [...new Set(array)];
+}
+console.log(unique([1, 2, 2, 3, 3, 4])); // [1, 2, 3, 4]
+
+function intersection(arr1, arr2) {
+    return arr1.filter(x => arr2.includes(x));
+}
+
+function difference(arr1, arr2) {
+    return arr1.filter(x => !arr2.includes(x));
+}
+
+function shuffle(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+````
 
 ### Strings (Complete Reference)
 
@@ -540,7 +764,7 @@ const highlighted = highlight`Hello ${name}, you are ${age} years old!`;
 const text = 'The quick brown fox';
 console.log(text.match(/quick/)); // ["quick"]
 console.log(text.match(/\b\w{4}\b/g)); // ["quick", "brown"]
-```
+````
 
 ### Objects (Complete Reference)
 
@@ -877,15 +1101,6 @@ async function loadModule() {
 }
 ```
 
-#### Advanced Array Methods
-
-````javascript
-const numbers = [1, 2, 3, 4, 5];
-
-// Find methods
-const found = numbers.find(n => n >
-````
-
 ## 🎯 Learning Goals
 
 - [ ] Master fundamental data structures
@@ -897,6 +1112,7 @@ const found = numbers.find(n => n >
 ## 📋 Topics Covered
 
 ### Data Structures
+
 - [ ] Arrays
 - [ ] Linked Lists
 - [ ] Stacks
@@ -907,6 +1123,7 @@ const found = numbers.find(n => n >
 - [ ] Heaps
 
 ### Algorithms
+
 - [ ] Sorting Algorithms
 - [ ] Searching Algorithms
 - [ ] Graph Algorithms
@@ -936,7 +1153,7 @@ npm init -y
 
 # Install packages (if needed)
 npm install package-name
-````
+```
 
 ## 📈 Progress Tracking
 
