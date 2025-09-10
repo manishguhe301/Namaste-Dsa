@@ -41,7 +41,15 @@ function largestElement(a) {
 let largestNo = largestElement(arr)
 console.log("P3: Largest number is " + largestNo);
 
+// * P4 => Write a function that returns the smallest number in an array
 
-// * P4 =>
-// * P5 =>
-// * P6 => 
+function smallestElement(a) {
+  let smallest = a[0];
+  for (let i = 1; i < a.length; i++) {
+    if (a[i] < smallest) smallest = a[i]
+  }
+  return smallest
+}
+
+let smallestNo = smallestElement(arr)
+console.log("P4: Smallest number is " + smallestNo);
