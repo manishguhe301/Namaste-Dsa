@@ -28,5 +28,20 @@ function countNegatives(a) {
 const countNoOfNegatives = countNegatives(arr)
 console.log("P2: No of negative numbers are " + countNoOfNegatives);
 
-// * P3 =>
-// * P4 => 
+// * P3 => Write a function that returns the largest number in an array
+
+function largestElement(a) {
+  let largest = a[0];
+  for (let i = 1; i < a.length; i++) {
+    if (a[i] > largest) largest = a[i]
+  }
+  return largest
+}
+
+let largestNo = largestElement(arr)
+console.log("P3: Largest number is " + largestNo);
+
+
+// * P4 =>
+// * P5 =>
+// * P6 => 
