@@ -2,7 +2,7 @@
 // * the array and returns the index of that element if not found return -1.
 
 let numToFind = 10;
-let arr = [1, 2, -3, 4, 5, -6, 7, 8, 9, -10, -1, 0];
+let arr = [1, 2, -3, 4, 5, -6, 7, -8, 9, -10, -1, 0];
 
 function findElem(num, a) {
   for (let i = 0; i < a.length; i++) {
@@ -57,6 +57,9 @@ console.log("P4: Smallest number is " + smallestNo);
 // * P5 => Write a function that returns the second largest number in an array
 
 const findSecondLargest = (a) => {
+
+  if (a.length < 2) return null
+
   let firstLargest = -Infinity;
   let secondLargest = -Infinity;
 
@@ -64,12 +67,35 @@ const findSecondLargest = (a) => {
     if (a[i] > firstLargest) {
       secondLargest = firstLargest
       firstLargest = a[i]
-    } else if (a[i] > secondLargest) {
+    } else if (a[i] > secondLargest && a[i] !== firstLargest) {
       secondLargest = a[i]
     }
   }
 
-  return secondLargest
+  return secondLargest === -Infinity ? null : secondLargest
 }
 
-console.log(findSecondLargest(arr));
+console.log("P5: Second largest number is " + findSecondLargest([10, 20, 20]));
+
+// * P6 => Write a function that returns the second smallest number in an array
+
+const findSecondSmallest = (a) => {
+
+  if (a.length < 2) return null
+
+  let firstSmallest = Infinity;
+  let secondSmallest = Infinity
+
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] < firstSmallest) {
+      secondSmallest = firstSmallest
+      firstSmallest = a[i]
+    } else if (a[i] < secondSmallest && a[i] !== firstSmallest) {
+      secondSmallest = a[i]
+    }
+  }
+
+  return secondSmallest === Infinity ? null : secondSmallest
+}
+
+console.log("P6: Second smallest number is " + findSecondSmallest([10, 20, 20, -1]));
