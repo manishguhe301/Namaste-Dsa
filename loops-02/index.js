@@ -53,3 +53,23 @@ function smallestElement(a) {
 
 let smallestNo = smallestElement(arr)
 console.log("P4: Smallest number is " + smallestNo);
+
+// * P5 => Write a function that returns the second largest number in an array
+
+const findSecondLargest = (a) => {
+  let firstLargest = -Infinity;
+  let secondLargest = -Infinity;
+
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] > firstLargest) {
+      secondLargest = firstLargest
+      firstLargest = a[i]
+    } else if (a[i] > secondLargest) {
+      secondLargest = a[i]
+    }
+  }
+
+  return secondLargest
+}
+
+console.log(findSecondLargest(arr));
