@@ -18,3 +18,10 @@ function print1ToN(x) {
 }
 
 print1ToN(1)
+
+function sumOfNnumbers(n) {
+  if (n === 0) return 0;
+  return n + sumOfNnumbers(n - 1)
+}
+
+console.log(sumOfNnumbers(5));
