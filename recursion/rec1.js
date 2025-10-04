@@ -25,3 +25,12 @@ function sumOfNnumbers(n) {
 }
 
 console.log(sumOfNnumbers(5));
+
+
+let a = [1, 2, 3, 4, 5]
+function sumOfElements(n) {
+  if (n === 0) return a[0]
+  return a[n] + sumOfElements(n - 1)
+}
+
+console.log(sumOfElements(a.length - 1));
