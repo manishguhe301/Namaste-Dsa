@@ -1,4 +1,4 @@
-# Namaste DSA 🚀
+# Namaste DSA 🚀  
 
 Welcome to my Data Structures and Algorithms learning journey! This repository contains daily learnings, implementations, and practice problems as I progress through the Namaste DSA course.
 
